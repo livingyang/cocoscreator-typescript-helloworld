@@ -31,7 +31,6 @@ Typescript 版的 CocosCreator 的 HelloWorld 示例。
 ```
 > * 这个文件是Typescript项目的配置文件。
 > * 简单来说，我们告诉Typescript编译器，把 include中的ts文件，全部编译成js文件，并且存放到assets目录下
-
 4. 现在我们的项目结构(相关内容)是这样的：
 ```
 assets
