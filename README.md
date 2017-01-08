@@ -5,6 +5,7 @@ Typescript 版的 CocosCreator 的 HelloWorld 示例。
 * 操作系统：iMac (windows也适用)
 * CocosCreator版本: 1.3.1 (1.3+ 应该都适用)
 * 编辑器：vscode 1.8.1
+* HelloWorld目录中，是已经配置好了的项目，可以先使用vscode看看效果
 
 # 第一步，使用CocosCreator创建HelloWorld项目
 * 先运行下，可以看到熟悉的HelloWorld界面
