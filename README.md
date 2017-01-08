@@ -7,8 +7,9 @@ Typescript 版的 CocosCreator 的 HelloWorld 示例。
 * 编辑器：vscode 1.8.1
 * HelloWorld目录中，是已经配置好了的项目，可以先使用vscode看看效果
 
-# 第一步，使用CocosCreator创建HelloWorld项目
-* 先运行下，可以看到熟悉的HelloWorld界面
+# 第一步，创建HelloWorld项目
+* 打开CocosCreator，创建HelloWorld模板的项目
+* 先运行下，检查下HelloWorld界面
 
 # 第二步，创建Typescript项目
 1. 将assets/Script拷贝到项目根目录下
