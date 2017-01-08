@@ -1,6 +1,7 @@
 {
     "include": [
         "./creator.d.ts",
+        "./assets/Plugin/ts-support/ts-support.d.ts",
         "./Script"
     ],
     "compilerOptions": {

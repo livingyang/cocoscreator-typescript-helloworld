@@ -1,23 +1,17 @@
-cc.Class({
-    extends: cc.Component,
+@cc.RegisterComponent
+class HelloWorld extends cc.Component {
+    @cc.Property(cc.Label)
+    label: cc.Label;
 
-    properties: {
-        label: {
-            default: null,
-            type: cc.Label
-        },
-        // defaults, set visually when attaching this script to the Canvas
-        text: 'Hello, World!'
-    },
+    @cc.Property('Hello, World!')
+    text: string;
 
-    // use this for initialization
-    onLoad: function () {
-        this.label.string = this.text;
-        
-    },
+    fromTypescript = ' From typescript!';
 
-    // called every frame
-    update: function (dt) {
+    onLoad() {
+        this.label.string = this.text + this.fromTypescript;
+    }
 
-    },
-});
+    update() {
+    }
+}
