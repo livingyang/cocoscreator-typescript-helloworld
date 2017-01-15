@@ -18,8 +18,12 @@ var HelloWorld = (function (_super) {
     }
     HelloWorld.prototype.onLoad = function () {
         this.label.string = this.text + this.fromTypescript;
+        this.editbox.string = 'editbox';
     };
     HelloWorld.prototype.update = function () {
+    };
+    HelloWorld.prototype.onButtonClick = function () {
+        console.log("editbox.string = " + this.editbox.string);
     };
     return HelloWorld;
 }(cc.Component));
@@ -29,6 +33,9 @@ __decorate([
 __decorate([
     cc.Property('Hello, World!')
 ], HelloWorld.prototype, "text", void 0);
+__decorate([
+    cc.Property(cc.EditBox)
+], HelloWorld.prototype, "editbox", void 0);
 HelloWorld = __decorate([
     cc.RegisterComponent
 ], HelloWorld);

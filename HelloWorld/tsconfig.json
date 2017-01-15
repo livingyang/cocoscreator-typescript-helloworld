@@ -8,6 +8,7 @@
         "module": "commonjs",
         "target": "es5",
         "outDir": "./assets/Script",
+        "watch": true,
         "experimentalDecorators": true
     }
 }

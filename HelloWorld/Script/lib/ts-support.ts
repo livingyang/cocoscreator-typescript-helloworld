@@ -1,9 +1,14 @@
+declare module cc {
+    export function Property(any);
+    export function RegisterComponent(any);
+}
+
 cc.RegisterComponent = function (constructor) {
-    cc.Class({
-        extends: constructor,
-        properties: constructor.$properties
+    return cc.Class({
+        extends: cc.Component,
+        properties: constructor.$properties,
+        mixins: [constructor]
     });
-    return constructor;
 }
 
 cc.Property = function (property) {
