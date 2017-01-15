@@ -85,14 +85,19 @@ Typescript 版的 CocosCreator 的 HelloWorld 示例。
 1. 通过上面的步骤，我们可以编译Typescript项目，但是目前ts代码，无法识别cocos的组件系统，接下来需要增加组件支持
     > 可以观察，在onLoad函数中，this指针是拿不到任何类型提示的
 
-2. 增加assets/Plugin/ts-support/ts-support.js，**并且在CocosCreator中，将这个文件设置成插件**，文件内容如下：
+2. 增加`Script/lib/ts-support.ts`，**并且在CocosCreator中，将这个文件设置成插件**，文件内容如下：
     ```
+    declare module cc {
+        export function Property(any);
+        export function RegisterComponent(any);
+    }
+
     cc.RegisterComponent = function (constructor) {
-        cc.Class({
-            extends: constructor,
-            properties: constructor.$properties
+        return cc.Class({
+            extends: cc.Component,
+            properties: constructor.$properties,
+            mixins: [constructor]
         });
-        return constructor;
     }
 
     cc.Property = function (property) {
@@ -103,33 +108,7 @@ Typescript 版的 CocosCreator 的 HelloWorld 示例。
     }
     ```
 
-3. 增加assets/Plugin/ts-support/ts-support.d.ts，文件内容如下：
-    ```
-    declare module cc {
-        export function Property(any);
-        export function RegisterComponent(any);
-    }
-    ```
-
-4. 修改tsconfig.ts，增加ts-support.d.ts的引用，文件内容如下：
-    ```
-    {
-        "include": [
-            "./creator.d.ts",
-            "./assets/Plugin/ts-support/ts-support.d.ts",
-            "./Script"
-        ],
-        "compilerOptions": {
-            "module": "commonjs",
-            "target": "es5",
-            "outDir": "./assets/Script",
-            "experimentalDecorators": true
-        }
-    }
-    ```
-    > 上面的步骤，增加了组件系统的Typescript支持，这样我们就可以对HelloWorld.ts进行重构了
-
-5. 重构 HelloWorld.ts 文件，文件内容如下：
+4. 重构 HelloWorld.ts 文件，文件内容如下：
     ```
     @cc.RegisterComponent
     class HelloWorld extends cc.Component {
@@ -150,6 +129,9 @@ Typescript 版的 CocosCreator 的 HelloWorld 示例。
     }
     ```
 
+5. 编译Typescript项目，并且将 `assets/Script/lib/ts-support.js` **设置成插件脚本**
+    > 不设置成插件脚本，会导致自定义类型无法注册到cocos引擎中
+
 6. 现在可以享受Typescript类型系统带来的真·智能提示了，尝试在onLoad函数中，用this指针查看提示内容
     > * 每次更改ts脚本，记得编译生成js脚本
     > * `@cc.RegisterComponent` 用于将当前类注册到cocoscreator的组件系统中
@@ -158,6 +140,6 @@ Typescript 版的 CocosCreator 的 HelloWorld 示例。
 
 # 总结，需要在cocoscreator中增加 Typescript支持，你需要做的步骤仅仅是：
 1. 更新 creator.d.ts
-2. 增加 ts-support.js 和 ts-support.d.ts
+2. 增加 ts-support.ts
 
     > 其他的步骤都是学习Typescript过程中，通用的技术
